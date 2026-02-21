@@ -52,6 +52,25 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
   height: 84px;
   width: auto;
 }  
+.sdg-logos {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.sdg-logos img {
+  height: 36px;        /* makes them small */
+  width: auto;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.85;
+}
+
+.sdg-logos img:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+  
 .nav-logo-mark svg { width: 20px; height: 20px; }
 .nav-logo-text { font-family: var(--font-serif); font-size: 1rem; font-weight: 700; color: var(--forest); line-height: 1.2; letter-spacing: -0.2px; }
 .nav-logo-text small { display: block; font-family: var(--font-sans); font-size: 0.62rem; font-weight: 400; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-muted); }
