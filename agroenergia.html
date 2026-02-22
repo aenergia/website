@@ -209,6 +209,22 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
 .partner-chip { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--text-muted); background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 9px 18px; transition: all 0.18s; }
 .partner-chip:hover { border-color: var(--forest-light); color: var(--forest); background: var(--forest-pale); }
 
+  /* NEW LOGO STYLING */
+.partners-logos img {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.75;
+  filter: grayscale(100%);
+  transition: all 0.3s ease;
+}
+
+.partners-logos img:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
 /* FAQ */
 .faq { background: var(--bg); }
 .faq-inner { max-width: 760px; margin: 0 auto; }
@@ -483,48 +499,63 @@ footer { background: var(--navy); padding: 64px 52px 32px; }
     <div class="h2">Vozes de quem já<br><em>mudou o futuro</em></div>
     <p class="lead">Agricultores, líderes comunitários e parceiros que transformaram as suas vidas com energia renovável em Moçambique.</p>
   </div>
+
   <div class="testi-grid">
+    <!-- Testimonial 1 -->
     <div class="testi-card reveal">
       <span class="testi-quote">"</span>
       <p class="testi-text">Com a bomba solar instalada pela Agro Energia, consigo irrigar o meu campo. A minha produção aumentou e já não dependo muito das chuvas.</p>
       <div class="testi-author">
-        <img class="testi-avatar" alt="João Machava"/>
-        <div><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-name">Carlos Matlombe</div><div class="testi-role">Agricultor, Marracuene</div></div>
+        <img class="testi-avatar" src="path-to-avatar1.jpg" alt="João Machava"/>
+        <div>
+          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="testi-name">Carlos Matlombe</div>
+          <div class="testi-role">Agricultor, Marracuene</div>
+        </div>
       </div>
     </div>
+
+    <!-- Testimonial 2 -->
     <div class="testi-card reveal d1">
       <span class="testi-quote">"</span>
       <p class="testi-text">Agora não precisamos mais gastar com velas e candeeiros a petróleo. Usamos as lâmpadas solares da Agro Energia que são muito luminosas.</p>
       <div class="testi-author">
-        <img class="testi-avatar" alt="Fátima Cumbane"/>
-        <div><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-name">Fátima Cumbane</div><div class="testi-role">Residente, Changalane</div></div>
+        <img class="testi-avatar" src="path-to-avatar2.jpg" alt="Fátima Cumbane"/>
+        <div>
+          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="testi-name">Fátima Cumbane</div>
+          <div class="testi-role">Residente, Changalane</div>
+        </div>
       </div>
-        <div class="testi-card reveal d2">
+    </div>
+
+    <!-- Testimonial 3 -->
+    <div class="testi-card reveal d2">
       <span class="testi-quote">"</span>
       <p class="testi-text">O sistema de biogás resolveu dois problemas de uma vez: os resíduos das galinhas e temos gás para cozinhar sem gastar dinheiro em carvão.</p>
       <div class="testi-author">
-        <img class="testi-avatar" alt="Carlos Nhantumbo"/>
-        <div><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testi-name">Alice Macandja</div><div class="testi-role">Avicultora, Khongolote</div></div>
+        <img class="testi-avatar" src="path-to-avatar3.jpg" alt="Carlos Nhantumbo"/>
+        <div>
+          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="testi-name">Alice Macandja</div>
+          <div class="testi-role">Avicultora, Khongolote</div>
+        </div>
       </div>
-    </div>
     </div>
   </div>
 </section>
 
 
 <!-- PARTNERS -->
-<div class="partners">
-  <div class="partners-label">Parceiros e Apoiantes Institucionais</div>
-  <div class="partners-row">
-    <div class="partner-chip">FUNAE</div>
-    <div class="partner-chip">GIZ Moçambique</div>
-    <div class="partner-chip">Banco Mundial</div>
-    <div class="partner-chip">IRENA</div>
-    <div class="partner-chip">EDM</div>
-    <div class="partner-chip">USAID</div>
-    <div class="partner-chip">Ministério da Energia</div>
-    <div class="partner-chip">AfDB</div>
-  </div>
+<div class="partners-row partners-logos">
+  <img src="logos/funae.png" alt="FUNAE">
+  <img src="logos/giz.png" alt="GIZ Moçambique">
+  <img src="logos/worldbank.png" alt="Banco Mundial">
+  <img src="logos/irena.png" alt="IRENA">
+  <img src="logos/edm.png" alt="EDM">
+  <img src="logos/usaid.png" alt="USAID">
+  <img src="logos/ministerio-energia.png" alt="Ministério da Energia">
+  <img src="logos/afdb.png" alt="AfDB">
 </div>
 
 
