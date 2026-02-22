@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agro Energia Moçambique — Energia Renovável para um Futuro Melhor</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;0,8..60,900;1,8..60,300;1,8..60,400;1,8..60,700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold:        #C8860A;
+  --gold-light:  #E5A020;
+  --gold-pale:   #FBF3E2;
+  --forest:      #16392A;
+  --forest-mid:  #245C3E;
+  --forest-light:#3A7D54;
+  --forest-pale: #EBF5EF;
+  --ink:         #0A1A10;
+  --text-body:   #374B3E;
+  --text-muted:  #6B8070;
+  --border:      rgba(22,57,42,0.1);
+  --bg:          #FAFAF8;
+  --white:       #FFFFFF;
+  --navy:        #0B1F3A;
+  --font-serif:  'Source Serif 4', Georgia, serif;
+  --font-sans:   -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-sans); background: var(--bg); color: var(--ink); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--forest-light); border-radius: 10px; }
+
+/* ===================== NAV ===================== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 64px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 52px;
+  background: rgba(250,250,248,0.94); backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border); transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+
+.nav-logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+.nav-logo-img { height: 52px; width: auto; }
+
+.sdg-logos { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.sdg-logos img { height: 68px; width: auto; transition: transform 0.3s ease, opacity 0.3s ease; opacity: 0.85; }
+.sdg-logos img:hover { transform: scale(1.05); opacity: 1; }
+
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { font-size: 0.8125rem; font-weight: 500; color: var(--text-body); text-decoration: none; letter-spacing: 0.01em; transition: color 0.15s; }
+.nav-links a:hover { color: var(--forest); }
+
+.nav-actions { display: flex; gap: 10px; align-items: center; }
+
+/* Hamburger */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px; height: 40px;
+  border: none; background: none; cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+.nav-hamburger:hover { background: var(--forest-pale); }
+.nav-hamburger span {
+  display: block; width: 22px; height: 2px;
+  background: var(--forest); border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+  transform-origin: center;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile drawer */
+.mobile-menu {
+  display: none;
+  position: fixed; top: 64px; left: 0; right: 0; z-index: 190;
+  background: rgba(250,250,248,0.98); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 20px 28px;
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  pointer-events: none;
+}
+.mobile-menu.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+.mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 0; margin-bottom: 16px; }
+.mobile-menu ul li a {
+  display: block; padding: 13px 4px;
+  font-size: 1rem; font-weight: 500; color: var(--ink);
+  text-decoration: none; border-bottom: 1px solid var(--border);
+  transition: color 0.15s;
+}
+.mobile-menu ul li:last-child a { border-bottom: none; }
+.mobile-menu ul li a:hover { color: var(--forest); }
+.mobile-menu-actions { display: flex; gap: 10px; flex-wrap: wrap; padding-top: 8px; }
+.mobile-menu-actions .btn-outline,
+.mobile-menu-actions .btn-cta { width: 100%; justify-content: center; padding: 12px 20px; font-size: 0.9rem; }
+
+.btn-outline { font-family: var(--font-sans); font-size: 0.8125rem; font-weight: 600; color: var(--forest); background: none; border: 1.5px solid var(--forest); border-radius: 6px; padding: 7px 18px; cursor: pointer; text-decoration: none; transition: all 0.18s; letter-spacing: 0.01em; }
+.btn-outline:hover { background: var(--forest); color: white; }
+
+.btn-cta { font-family: var(--font-sans); font-size: 0.8125rem; font-weight: 600; background: var(--gold); color: white; border: none; border-radius: 6px; padding: 8px 20px; cursor: pointer; text-decoration: none; transition: all 0.18s; letter-spacing: 0.01em; display: inline-flex; align-items: center; gap: 6px; }
+.btn-cta:hover { background: var(--gold-light); box-shadow: 0 4px 14px rgba(200,134,10,0.35); transform: translateY(-1px); }
+
+.btn-cta-lg { font-family: var(--font-sans); font-size: 0.9375rem; font-weight: 600; background: var(--gold); color: white; border: none; border-radius: 6px; padding: 14px 32px; cursor: pointer; text-decoration: none; transition: all 0.18s; letter-spacing: 0.01em; display: inline-flex; align-items: center; gap: 8px; }
+.btn-cta-lg:hover { background: var(--gold-light); box-shadow: 0 6px 20px rgba(200,134,10,0.38); transform: translateY(-2px); }
+
+.btn-ghost-lg { font-family: var(--font-sans); font-size: 0.9375rem; font-weight: 600; color: white; background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.35); border-radius: 6px; padding: 13px 30px; cursor: pointer; text-decoration: none; transition: all 0.18s; letter-spacing: 0.01em; display: inline-flex; align-items: center; }
+.btn-ghost-lg:hover { background: rgba(255,255,255,0.18); }
+
+/* ===================== HERO ===================== */
+.hero { position: relative; height: 100vh; min-height: 680px; display: flex; align-items: flex-end; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 60%; display: block; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,26,16,0.25) 0%, rgba(10,26,16,0.35) 40%, rgba(10,26,16,0.82) 80%, rgba(10,26,16,0.95) 100%); }
+.hero-content { position: relative; z-index: 2; padding: 0 52px 72px; max-width: 860px; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; font-family: var(--font-sans); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-light); }
+.hero-eyebrow-line { width: 32px; height: 2px; background: var(--gold); flex-shrink: 0; }
+.hero h1 { font-family: var(--font-serif); font-size: clamp(2.2rem, 5.5vw, 4.4rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; color: white; margin-bottom: 22px; }
+.hero h1 em { font-style: italic; font-weight: 300; color: var(--gold-light); }
+.hero-sub { font-size: 1.0625rem; line-height: 1.72; color: rgba(255,255,255,0.78); max-width: 580px; margin-bottom: 38px; font-weight: 300; letter-spacing: 0.01em; }
+.hero-cta-row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-bottom: 32px; }
+.hero-trust { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.15); }
+.hero-trust-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); white-space: nowrap; }
+.hero-trust-logos { display: flex; gap: 10px; flex-wrap: wrap; }
+.trust-badge { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; padding: 5px 10px; }
+
+/* ===================== STATS STRIP ===================== */
+.stats-strip { background: var(--forest); display: flex; }
+.stat-block { flex: 1; padding: 36px 40px; border-right: 1px solid rgba(255,255,255,0.07); transition: background 0.2s; }
+.stat-block:last-child { border-right: none; }
+.stat-block:hover { background: var(--forest-mid); }
+.stat-number { font-family: var(--font-serif); font-size: 2.2rem; font-weight: 700; color: var(--gold-light); line-height: 1; margin-bottom: 6px; letter-spacing: -0.02em; }
+.stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.6); line-height: 1.45; }
+
+/* ===================== SECTION BASE ===================== */
+.section { padding: 96px 52px; }
+.eyebrow { font-family: var(--font-sans); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--gold); flex-shrink: 0; }
+.h2 { font-family: var(--font-serif); font-size: clamp(1.75rem, 3vw, 2.75rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 18px; }
+.h2 em { font-style: italic; font-weight: 300; color: var(--forest-light); }
+.lead { font-size: 1rem; line-height: 1.78; color: var(--text-body); max-width: 560px; font-weight: 300; letter-spacing: 0.01em; }
+
+/* ===================== SOLUTIONS ===================== */
+.solutions { background: var(--white); }
+.solutions-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: end; margin-bottom: 56px; }
+.solutions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.sol-card { background: var(--white); position: relative; overflow: hidden; cursor: pointer; transition: background 0.25s; }
+.sol-card:hover { background: var(--forest-pale); }
+.sol-img-wrap { overflow: hidden; height: 200px; }
+.sol-img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.85); transition: filter 0.35s, transform 0.45s; }
+.sol-card:hover .sol-img { filter: saturate(1.05); transform: scale(1.04); }
+.sol-body { padding: 22px 22px 26px; }
+.sol-tag { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(200,134,10,0.3); border-radius: 4px; padding: 3px 8px; margin-bottom: 10px; }
+.sol-title { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 600; color: var(--ink); margin-bottom: 8px; line-height: 1.3; letter-spacing: -0.01em; }
+.sol-desc { font-size: 0.825rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 16px; }
+.sol-link { font-size: 0.8rem; font-weight: 600; color: var(--forest); text-decoration: none; letter-spacing: 0.01em; border-bottom: 1px solid var(--forest-light); padding-bottom: 1px; transition: color 0.15s, border-color 0.15s; }
+.sol-link:hover { color: var(--gold); border-color: var(--gold); }
+
+/* ===================== MISSION ===================== */
+.mission { background: var(--bg); }
+.mission-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.mission-img-wrap { position: relative; border-radius: 12px; overflow: hidden; }
+.mission-img-wrap img { width: 100%; height: 520px; object-fit: cover; display: block; border-radius: 12px; transition: transform 0.6s ease; }
+.mission-img-wrap:hover img { transform: scale(1.03); }
+.mission-overlay-card { position: absolute; bottom: 24px; left: 24px; right: 24px; background: rgba(10,26,16,0.88); backdrop-filter: blur(12px); border-radius: 10px; padding: 20px 22px; display: flex; gap: 0; border: 1px solid rgba(255,255,255,0.08); }
+.overlay-metric { text-align: center; flex: 1; }
+.overlay-metric-num { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--gold-light); display: block; margin-bottom: 4px; }
+.overlay-metric-label { font-size: 0.68rem; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.07em; font-weight: 500; }
+.overlay-divider { width: 1px; background: rgba(255,255,255,0.1); margin: 0 16px; }
+.mission-list { list-style: none; margin-top: 28px; display: flex; flex-direction: column; gap: 14px; }
+.mission-list li { display: flex; gap: 12px; align-items: flex-start; font-size: 0.9rem; line-height: 1.6; color: var(--text-body); }
+.mission-list li::before { content: ''; width: 18px; height: 18px; border-radius: 50%; background: var(--gold-pale); border: 1.5px solid var(--gold); flex-shrink: 0; margin-top: 2px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%23C8860A' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-size: 12px; background-position: center; background-repeat: no-repeat; }
+.mission-cta { margin-top: 36px; }
+
+/* ===================== IMPACT ===================== */
+.impact { background: var(--forest); position: relative; overflow: hidden; }
+.impact-pattern { position: absolute; inset: 0; opacity: 0.04; background-image: repeating-linear-gradient(0deg, transparent, transparent 48px, rgba(255,255,255,1) 48px, rgba(255,255,255,1) 49px), repeating-linear-gradient(90deg, transparent, transparent 48px, rgba(255,255,255,1) 48px, rgba(255,255,255,1) 49px); }
+.impact-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: center; }
+.impact-text .eyebrow { color: var(--gold-light); }
+.impact-text .eyebrow::before { background: var(--gold-light); }
+.impact-text .h2 { color: white; }
+.impact-text .h2 em { color: rgba(255,255,255,0.5); }
+.impact-text .lead { color: rgba(255,255,255,0.65); }
+.impact-cta { margin-top: 40px; display: flex; gap: 14px; flex-wrap: wrap; }
+.impact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.impact-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 28px 24px; transition: background 0.2s, border-color 0.2s; }
+.impact-card:hover { background: rgba(255,255,255,0.09); border-color: rgba(232,160,32,0.35); }
+.impact-icon { width: 40px; height: 40px; border-radius: 8px; background: rgba(200,134,10,0.18); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.impact-icon svg { width: 20px; height: 20px; stroke: var(--gold-light); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.impact-num { font-family: var(--font-serif); font-size: 2rem; font-weight: 700; color: var(--gold-light); display: block; margin-bottom: 6px; letter-spacing: -0.02em; }
+.impact-label { font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+/* ===================== HOW ===================== */
+.how { background: var(--white); }
+.how-header { text-align: center; margin-bottom: 72px; }
+.how-header .lead { margin: 0 auto; }
+.process { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+.process::after { content: ''; position: absolute; top: 27px; left: 14%; right: 14%; height: 1px; background: linear-gradient(90deg, transparent, var(--border), var(--border), transparent); z-index: 0; }
+.proc-step { text-align: center; padding: 0 24px; position: relative; z-index: 1; }
+.proc-num { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--gold); background: var(--white); font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; color: var(--forest); display: flex; align-items: center; justify-content: center; margin: 0 auto 22px; box-shadow: 0 0 0 6px var(--gold-pale); }
+.proc-title { font-family: var(--font-serif); font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 10px; line-height: 1.3; }
+.proc-desc { font-size: 0.825rem; color: var(--text-muted); line-height: 1.7; }
+
+/* ===================== TESTIMONIALS ===================== */
+.testimonials { background: var(--forest-pale); }
+.testimonials-header { text-align: center; margin-bottom: 56px; }
+.testimonials-header .lead { margin: 0 auto; }
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.testi-card { background: var(--white); border-radius: 10px; padding: 32px 28px; box-shadow: 0 2px 12px rgba(22,57,42,0.06); border: 1px solid transparent; transition: border-color 0.2s, transform 0.25s, box-shadow 0.25s; }
+.testi-card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 12px 40px rgba(22,57,42,0.1); }
+.testi-quote { font-family: var(--font-serif); font-size: 3.5rem; line-height: 0.7; color: var(--gold); margin-bottom: 16px; display: block; font-weight: 300; }
+.testi-text { font-family: var(--font-serif); font-size: 0.9375rem; line-height: 1.76; color: var(--text-body); margin-bottom: 26px; font-style: italic; font-weight: 300; letter-spacing: 0.01em; }
+.testi-author { display: flex; align-items: center; gap: 14px; }
+.testi-avatar { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid var(--border); }
+.testi-name { font-size: 0.875rem; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+.testi-role { font-size: 0.73rem; color: var(--text-muted); letter-spacing: 0.01em; }
+.testi-stars { color: var(--gold); font-size: 0.7rem; margin-bottom: 3px; letter-spacing: 2px; }
+
+/* ===================== PARTNERS ===================== */
+.partners { padding: 52px; background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.partners-label { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); text-align: center; margin-bottom: 28px; font-weight: 600; }
+.partners-row { display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap; }
+.partner-chip { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--text-muted); background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 9px 18px; transition: all 0.18s; }
+.partner-chip:hover { border-color: var(--forest-light); color: var(--forest); background: var(--forest-pale); }
+.partners-logos { display: flex; gap: 20px; justify-content: center; align-items: center; flex-wrap: wrap; }
+.partners-logos img { height: 52px; width: auto; object-fit: contain; opacity: 0.75; filter: grayscale(100%); transition: all 0.3s ease; }
+.partners-logos img:hover { opacity: 1; filter: grayscale(0%); transform: scale(1.05); }
+
+/* ===================== FAQ ===================== */
+.faq { background: var(--bg); }
+.faq-inner { max-width: 760px; margin: 0 auto; }
+.faq-header { text-align: center; margin-bottom: 52px; }
+.faq-item { border-bottom: 1px solid var(--border); }
+.faq-q { width: 100%; text-align: left; background: none; border: none; padding: 22px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; font-family: var(--font-sans); font-size: 0.9375rem; font-weight: 600; color: var(--ink); letter-spacing: -0.01em; }
+.faq-q:hover { color: var(--forest); }
+.faq-chevron { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; background: var(--gold-pale); border: 1.5px solid rgba(200,134,10,0.3); display: flex; align-items: center; justify-content: center; transition: transform 0.3s, background 0.2s; }
+.faq-chevron svg { width: 12px; height: 12px; stroke: var(--gold); stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.2s; }
+.faq-item.open .faq-chevron { transform: rotate(180deg); background: var(--gold); border-color: var(--gold); }
+.faq-item.open .faq-chevron svg { stroke: white; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.faq-item.open .faq-a { max-height: 260px; }
+.faq-a-inner { padding: 2px 0 24px; font-size: 0.9rem; color: var(--text-muted); line-height: 1.78; max-width: 620px; }
+
+/* ===================== CTA ===================== */
+.cta-section { position: relative; overflow: hidden; }
+.cta-bg { position: absolute; inset: 0; }
+.cta-bg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cta-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(22,57,42,0.94) 0%, rgba(10,26,16,0.88) 100%); }
+.cta-inner { position: relative; z-index: 2; padding: 100px 52px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.cta-text .eyebrow { color: var(--gold-light); }
+.cta-text .eyebrow::before { background: var(--gold-light); }
+.cta-text .h2 { color: white; }
+.cta-text .lead { color: rgba(255,255,255,0.7); }
+.cta-btns { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; }
+.cta-checklist { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.cta-checklist li { display: flex; gap: 12px; align-items: flex-start; font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.55; }
+.cta-checklist li::before { content: ''; width: 18px; height: 18px; border-radius: 50%; background: rgba(200,134,10,0.22); border: 1.5px solid var(--gold); flex-shrink: 0; margin-top: 1px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%23E5A020' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-size: 12px; background-position: center; background-repeat: no-repeat; }
+.cta-contact { margin-top: 36px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.12); }
+.cta-contact-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
+.cta-contact-items { display: flex; flex-direction: column; gap: 10px; }
+.cta-contact-item { font-size: 0.875rem; color: rgba(255,255,255,0.65); display: flex; align-items: flex-start; gap: 10px; line-height: 1.55; }
+.contact-icon { width: 16px; height: 16px; flex-shrink: 0; opacity: 0.65; margin-top: 2px; }
+
+/* ===================== FOOTER ===================== */
+footer { background: var(--navy); padding: 64px 52px 32px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 32px; }
+.footer-brand-name { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; color: white; margin-bottom: 14px; display: block; letter-spacing: -0.01em; }
+.footer-brand-name span { color: var(--gold-light); }
+.footer-tagline { font-size: 0.85rem; line-height: 1.72; color: rgba(255,255,255,0.4); max-width: 280px; margin-bottom: 24px; }
+.footer-socials { display: flex; gap: 8px; }
+.footer-social { width: 34px; height: 34px; border-radius: 6px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; transition: background 0.18s; cursor: pointer; text-decoration: none; }
+.footer-social:hover { background: var(--forest-mid); }
+.footer-social svg { width: 16px; height: 16px; fill: rgba(255,255,255,0.5); }
+.footer-col-head { font-size: 0.73rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.9); margin-bottom: 20px; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.footer-links a { font-size: 0.84rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.15s; }
+.footer-links a:hover { color: rgba(255,255,255,0.85); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 0.775rem; color: rgba(255,255,255,0.3); }
+.footer-bottom-links { display: flex; gap: 22px; }
+.footer-bottom-links a { color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.15s; }
+.footer-bottom-links a:hover { color: rgba(255,255,255,0.6); }
+
+/* ===================== REVEAL ===================== */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: 0.1s; }
+.d2 { transition-delay: 0.2s; }
+.d3 { transition-delay: 0.3s; }
+.d4 { transition-delay: 0.4s; }
+
+/* ===================== RESPONSIVE — TABLET 1100px ===================== */
+@media (max-width: 1100px) {
+  nav { padding: 0 28px; }
+  .section { padding: 80px 36px; }
+  .hero-content { padding: 0 36px 64px; }
+  .solutions-intro { grid-template-columns: 1fr; gap: 28px; }
+  .mission-inner { grid-template-columns: 1fr; }
+  .mission-img-wrap img { height: 420px; }
+  .impact-inner { grid-template-columns: 1fr; gap: 48px; }
+  .cta-inner { grid-template-columns: 1fr; gap: 48px; padding: 80px 36px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  footer { padding: 56px 36px 28px; }
+}
+
+/* ===================== RESPONSIVE — TABLET 900px ===================== */
+@media (max-width: 900px) {
+  .solutions-grid { grid-template-columns: 1fr 1fr; }
+  .testi-grid { grid-template-columns: 1fr 1fr; }
+  .process { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .process::after { display: none; }
+  .impact-grid { grid-template-columns: 1fr 1fr; }
+  .stats-strip { flex-wrap: wrap; }
+  .stat-block { min-width: 50%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .stat-block:last-child { border-bottom: none; }
+}
+
+/* ===================== RESPONSIVE — MOBILE 680px ===================== */
+@media (max-width: 680px) {
+  /* Nav */
+  nav { padding: 0 16px; height: 60px; }
+  .nav-links { display: none; }
+  .nav-actions .btn-outline { display: none; }
+  .nav-actions .btn-cta { display: none; }
+  .nav-hamburger { display: flex; }
+  .mobile-menu { display: block; }
+
+  /* Hero */
+  .hero { min-height: 100svh; align-items: flex-end; }
+  .hero-content { padding: 0 16px 48px; }
+  .hero h1 { font-size: clamp(1.9rem, 7.5vw, 2.8rem); }
+  .hero-sub { font-size: 0.9375rem; }
+  .hero-cta-row { gap: 10px; }
+  .hero-cta-row .btn-cta-lg,
+  .hero-cta-row .btn-ghost-lg { width: 100%; justify-content: center; padding: 13px 20px; font-size: 0.875rem; }
+  .sdg-logos img { height: 46px; }
+  .sdg-logos { gap: 6px; }
+
+  /* Stats */
+  .stats-strip { flex-direction: column; }
+  .stat-block { padding: 24px 20px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); width: 100%; }
+  .stat-block:last-child { border-bottom: none; }
+
+  /* Sections */
+  .section { padding: 56px 16px; }
+
+  /* Solutions */
+  .solutions-grid { grid-template-columns: 1fr; }
+  .sol-img-wrap { height: 180px; }
+
+  /* Mission */
+  .mission-img-wrap img { height: 280px; }
+  .mission-overlay-card { flex-direction: column; gap: 12px; padding: 16px; left: 12px; right: 12px; bottom: 12px; }
+  .overlay-divider { width: 100%; height: 1px; margin: 0; }
+  .overlay-metric-num { font-size: 1.2rem; }
+  .overlay-metric-label { font-size: 0.62rem; }
+
+  /* Impact */
+  .impact-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .impact-card { padding: 18px 14px; }
+  .impact-num { font-size: 1.5rem; }
+  .impact-cta .btn-cta-lg,
+  .impact-cta .btn-ghost-lg { width: 100%; justify-content: center; }
+
+  /* How */
+  .how-header { margin-bottom: 48px; }
+  .process { grid-template-columns: 1fr; gap: 32px; }
+  .proc-step { padding: 0 8px; }
+
+  /* Testimonials */
+  .testi-grid { grid-template-columns: 1fr; }
+
+  /* Partners */
+  .partners { padding: 36px 16px; }
+  .partners-logos img { height: 38px; }
+
+  /* FAQ */
+  .faq-q { font-size: 0.875rem; gap: 12px; }
+  .faq-a-inner { font-size: 0.85rem; }
+
+  /* CTA */
+  .cta-inner { padding: 56px 16px; gap: 36px; }
+  .cta-btns { flex-direction: column; }
+  .cta-btns .btn-cta-lg,
+  .cta-btns .btn-ghost-lg { width: 100%; justify-content: center; }
+
+  /* Footer */
+  footer { padding: 48px 16px 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+  .footer-bottom-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+}
+
+/* ===================== RESPONSIVE — SMALL MOBILE 400px ===================== */
+@media (max-width: 400px) {
+  .hero h1 { font-size: 1.75rem; }
+  .impact-grid { grid-template-columns: 1fr; }
+  .impact-card { padding: 20px 16px; }
+  .sdg-logos img { height: 38px; }
+  .hero-eyebrow { font-size: 0.65rem; }
+}
+
+/* ===================== TOUCH IMPROVEMENTS ===================== */
+@media (hover: none) {
+  .sol-card:hover { background: var(--white); }
+  .sol-card:hover .sol-img { filter: saturate(0.85); transform: none; }
+  .testi-card:hover { transform: none; box-shadow: 0 2px 12px rgba(22,57,42,0.06); }
+  .mission-img-wrap:hover img { transform: none; }
+  .btn-cta-lg:hover { transform: none; }
+  .btn-cta:hover { transform: none; }
+}
+
+/* ===================== SAFE AREA INSETS (notch) ===================== */
+@supports (padding: env(safe-area-inset-left)) {
+  nav {
+    padding-left: max(52px, env(safe-area-inset-left));
+    padding-right: max(52px, env(safe-area-inset-right));
+  }
+  @media (max-width: 1100px) {
+    nav { padding-left: max(28px, env(safe-area-inset-left)); padding-right: max(28px, env(safe-area-inset-right)); }
+  }
+  @media (max-width: 680px) {
+    nav { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
+    .hero-content { padding-bottom: max(48px, env(safe-area-inset-bottom)); }
+    footer { padding-bottom: max(24px, env(safe-area-inset-bottom)); }
+  }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <img src="agro-logo-nobg.png" alt="Agro Energia Moçambique Logo" class="nav-logo-img">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#solucoes">Soluções</a></li>
+    <li><a href="#impacto">Impacto</a></li>
+    <li><a href="#como-funciona">Como Funciona</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="#contacto" class="btn-outline">Contactar</a>
+    <a href="#solucoes" class="btn-cta">Ver Soluções</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <ul>
+    <li><a href="#solucoes" onclick="closeMobileMenu()">Soluções</a></li>
+    <li><a href="#impacto" onclick="closeMobileMenu()">Impacto</a></li>
+    <li><a href="#como-funciona" onclick="closeMobileMenu()">Como Funciona</a></li>
+    <li><a href="#faq" onclick="closeMobileMenu()">FAQ</a></li>
+  </ul>
+  <div class="mobile-menu-actions">
+    <a href="#contacto" class="btn-outline" onclick="closeMobileMenu()">Contactar</a>
+    <a href="#solucoes" class="btn-cta" onclick="closeMobileMenu()">Ver Soluções</a>
+  </div>
+</div>
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="background - Editado.jpg" alt="Biodigestores em campo agrícola" loading="eager"/>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span class="hero-eyebrow-line"></span>Energia Renovável Rural</div>
+    <h1>Energia limpa para<br><em>alimentar o campo</em><br>e o futuro.</h1>
+    <p class="hero-sub">Levamos soluções agro-energéticas às comunidades rurais de Moçambique reduzindo custos, aumentando a produção agrícola e protegendo o ambiente.</p>
+    <div class="hero-cta-row">
+      <a href="#solucoes" class="btn-cta-lg">Explorar Soluções</a>
+      <a href="#como-funciona" class="btn-ghost-lg">Como Funciona</a>
+    </div>
+    
+    <div class="hero-trust-logos sdg-logos">
+      <img src="E_PRINT_01.jpg" alt="SDG 1 - No Poverty">
+      <img src="E_PRINT_02.jpg" alt="SDG 2 - Zero Hunger">
+      <img src="E_PRINT_07.jpg" alt="SDG 7 - Affordable and Clean Energy">
+      <img src="E_PRINT_12.jpg" alt="SDG 12 - Responsible Consumption and Production">
+      <img src="E_PRINT_13.jpg" alt="SDG 13 - Climate Action">
+      <img src="E_PRINT_15.jpg" alt="SDG 15 - Life on Land">
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTIONS -->
+<section class="section solutions" id="solucoes">
+  <div class="solutions-intro">
+    <div class="reveal">
+      <div class="eyebrow">As Nossas Soluções</div>
+      <div class="h2">Tecnologia renovável<br><em>adaptada ao campo</em></div>
+    </div>
+    <div class="reveal d1">
+      <p class="lead">Cada solução é desenhada para o contexto rural moçambicano, desde a escolha da tecnologia à formação de técnicos locais para manutenção contínua.</p>
+      <br><a href="#contacto" class="btn-cta" style="margin-top:16px">Falar com um especialista</a>
+    </div>
+  </div>
+  <div class="solutions-grid">
+    <div class="sol-card reveal">
+      <div class="sol-img-wrap"><img class="sol-img" src="pv.png" alt="Painéis solares fotovoltaicos"/></div>
+      <div class="sol-body"><span class="sol-tag">Popular</span><div class="sol-title">Energia Solar Fotovoltaica</div><div class="sol-desc">Instalação e manutenção de painéis solares para electrificação de residências, escolas, centros de saúde e campos agrícolas.</div><a href="#" class="sol-link">Saber mais</a></div>
+    </div>
+    <div class="sol-card reveal d1">
+      <div class="sol-img-wrap"><img class="sol-img" src="pump.jpg" alt="Irrigação agrícola"/></div>
+      <div class="sol-body"><span class="sol-tag">Essencial</span><div class="sol-title">Bombagem Solar para Irrigação</div><div class="sol-desc">Bombas de água alimentadas por energia solar para irrigação agrícola, eliminando o custo do combustível e garantindo abastecimento fiável.</div><a href="#" class="sol-link">Saber mais</a></div>
+    </div>
+    <div class="sol-card reveal d2">
+      <div class="sol-img-wrap"><img class="sol-img" src="gallery-3.jpg" alt="Campo agrícola com energia solar"/></div>
+      <div class="sol-body"><span class="sol-tag">Inovador</span><div class="sol-title">Biogás</div><div class="sol-desc">Conversão de resíduos animais e agrícolas em biogás para cozinha e electricidade, com adubo orgânico como subproduto</div><a href="#" class="sol-link">Saber mais</a></div>
+    </div>
+    <div class="sol-card reveal">
+      <div class="sol-img-wrap"><img class="sol-img" src="dryer.png" alt="Micro-rede eléctrica rural"/></div>
+      <div class="sol-body"><span class="sol-tag">Agro-Tech</span><div class="sol-title">Pós-Colheita a Energia Solar</div><div class="sol-desc">Equipamentos de secagem, refrigeração e processamento alimentar movidos a energia solar para reduzir perdas pós-colheita.</div><a href="#" class="sol-link">Saber mais</a></div>
+    </div>
+    <div class="sol-card reveal d1">
+      <div class="sol-img-wrap"><img class="sol-img" src="gallery-5.jpg" alt="Processamento pós-colheita solar"/></div>
+      <div class="sol-body"><span class="sol-tag">Serviços</span><div class="sol-title">Consultoria & Suporte Técnico</div><div class="sol-desc">Avaliação especializada e estudos de viabilidade de projetos de energia renovável adaptados a aplicações agrícolas, residenciais e comerciais.</div><a href="#" class="sol-link">Saber mais</a></div>
+    </div>
+    <div class="sol-card reveal d2">
+      <div class="sol-img-wrap"><img class="sol-img" src="gallery-8.jpg" alt="Sistema de armazenamento de energia"/></div>
+      <div class="sol-body"><span class="sol-tag">Softwares</span><div class="sol-title">Desenvolvimento de Software</div><div class="sol-desc">Soluções de software personalizadas para gestão de infraestrutura energética e agentes de IA para otimização e automação.</div><a href="#" class="sol-link">Saber mais</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="section mission">
+  <div class="mission-inner">
+    <div class="mission-img-wrap reveal">
+      <img src="icon-community.jpg" alt="Agricultor em campo irrigado com energia solar"/>
+      <div class="mission-overlay-card">
+        <div class="overlay-metric"><span class="overlay-metric-num">4,6 milhões</span><div class="overlay-metric-label"> De agricultores</div></div>
+        <div class="overlay-divider"></div>
+        <div class="overlay-metric"><span class="overlay-metric-num">36 milhões ha </span><div class="overlay-metric-label">  De terra arável</div></div>
+        <div class="overlay-divider"></div>
+        <div class="overlay-metric"><span class="overlay-metric-num">40%</span><div class="overlay-metric-label"> De perdas pós-colheita/ano</div></div>
+      </div>
+    </div>
+    <div class="reveal d2">
+      <div class="eyebrow">A Nossa Missão</div>
+      <div class="h2">Porque é que<br><em>fazemos isto</em></div>
+      <p class="lead">Em Moçambique, cerca de 65% da população vive em zonas rurais, onde mais de 4,6 milhões de agricultores dependem da agricultura, mas enfrentam baixo acesso à eletricidade. Paradoxalmente, o país possui enorme potencial solar e grande capacidade de converter resíduos orgânicos em biogás, criando uma oportunidade estratégica para expandir o acesso sustentável à energia.</p>
+      <ul class="mission-list">
+        <li>Expandir o acesso à energia renovável em comunidades rurais e periurbanas.</li>
+        <li>Implementar sistemas solares fotovoltaicos para residências e negócios.</li>
+        <li>Reduzir perdas pós-colheita através de secadores e refrigeradores solares.</li>
+        <li>Produzir biogás a partir de resíduos orgânicos, promovendo economia circular.</li>
+        <li>Desenvolver soluções tecnológicas inteligentes para gestão e optimização de energia.</li>
+      </ul>
+      <div class="mission-cta"><a href="#impacto" class="btn-cta-lg">Ver o nosso impacto</a></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- IMPACT -->
+<section class="section impact" id="impacto">
+  <div class="impact-pattern"></div>
+  <div class="impact-inner">
+    <div class="impact-text reveal">
+      <div class="eyebrow">Impacto Real</div>
+      <div class="h2">Números que<br><em>transformam vidas</em></div>
+      <p class="lead">Temos levado energia limpa e acessível às comunidades mais remotas do país, mudando economias locais e protegendo o ambiente para as próximas gerações.</p>
+      <div class="impact-cta">
+        <a href="#contacto" class="btn-cta-lg">Junte-se a esta mudança</a>
+        <a href="#" class="btn-ghost-lg">Relatório de Impacto</a>
+      </div>
+    </div>
+    <div class="impact-grid reveal d2">
+      <div class="impact-card">
+        <div class="impact-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <span class="impact-num">70+</span>
+        <div class="impact-label">Famílias com acesso a energia limpa</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+        <span class="impact-num">2</span>
+        <div class="impact-label">Comunidades rurais servidas</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <span class="impact-num">500t</span>
+        <div class="impact-label">Toneladas de CO₂ evitadas por ano em emissões equivalentes</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <span class="impact-num">40%</span>
+        <div class="impact-label">De redução dos custos de energia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- HOW IT WORKS -->
+<section class="section how" id="como-funciona">
+  <div class="how-header reveal">
+    <div class="eyebrow" style="justify-content:center">Como Funciona</div>
+    <div class="h2">Da consulta à energia<br><em>no seu local</em></div>
+    <p class="lead">Acompanhamos cada projecto desde a avaliação inicial até à manutenção contínua.</p>
+  </div>
+  <div class="process">
+    <div class="proc-step reveal"><div class="proc-num">01</div><div class="proc-title">Avaliação Gratuita</div><div class="proc-desc">Visitamos o local para avaliar as necessidades energéticas, o potencial solar e o sistema mais adequado à sua situação.</div></div>
+    <div class="proc-step reveal d1"><div class="proc-num">02</div><div class="proc-title">Proposta Personalizada</div><div class="proc-desc">Desenhamos uma solução adaptada ao orçamento e necessidades, com opções de financiamento e subsídios disponíveis.</div></div>
+    <div class="proc-step reveal d2"><div class="proc-num">03</div><div class="proc-title">Instalação Local</div><div class="proc-desc">A nossa equipa técnica instala o sistema com participação de mão-de-obra da própria comunidade, criando emprego local.</div></div>
+    <div class="proc-step reveal d3"><div class="proc-num">04</div><div class="proc-title">Suporte Contínuo</div><div class="proc-desc">Monitorização remota, manutenção regular e formação para os operadores locais garantem o funcionamento a longo prazo.</div></div>
+  </div>
+</section>
+
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials">
+  <div class="testimonials-header reveal">
+    <div class="eyebrow" style="justify-content:center">Histórias Reais</div>
+    <div class="h2">Vozes de quem já<br><em>mudou o futuro</em></div>
+    <p class="lead">Agricultores, líderes comunitários e parceiros que transformaram as suas vidas com energia renovável em Moçambique.</p>
+  </div>
+
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <span class="testi-quote">"</span>
+      <p class="testi-text">Com a bomba solar instalada pela Agro Energia, consigo irrigar o meu campo. A minha produção aumentou e já não dependo muito das chuvas.</p>
+      <div class="testi-author">
+        <img class="testi-avatar" src="3.png" alt="João Machava"/>
+        <div>
+          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="testi-name">Carlos Matlombe</div>
+          <div class="testi-role">Agricultor, Marracuene</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card reveal d1">
+      <span class="testi-quote">"</span>
+      <p class="testi-text">Agora não precisamos mais gastar com velas e candeeiros a petróleo. Usamos as lâmpadas solares da Agro Energia que são muito luminosas.</p>
+      <div class="testi-author">
+        <img class="testi-avatar" src="2.png" alt="Fátima Cumbane"/>
+        <div>
+          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="testi-name">Fátima Cumbane</div>
+          <div class="testi-role">Residente, Changalane</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card reveal d2">
+      <span class="testi-quote">"</span>
+      <p class="testi-text">O sistema de biogás resolveu dois problemas de uma vez: os resíduos das galinhas e temos gás para cozinhar sem gastar dinheiro em carvão.</p>
+      <div class="testi-author">
+        <img class="testi-avatar" src="2.png" alt="Carlos Nhantumbo"/>
+        <div>
+          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="testi-name">Alice Macandja</div>
+          <div class="testi-role">Avicultora, Khongolote</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS / AWARDS -->
+<section class="section partners">
+  <div class="h2" style="text-align: center;">Prémios & <br><em>Reconhecimento</em></div>
+  <div class="partners-row partners-logos">
+    <img src="award-1.png" alt="FUNAE">
+    <img src="award-2.png" alt="GIZ Moçambique">
+    <img src="award-3.png" alt="Banco Mundial">
+    <img src="award-4.png" alt="IRENA">
+    <img src="award-5.png" alt="EDM">
+    <img src="award-6.png" alt="USAID">
+    <img src="award-7.png" alt="Ministério da Energia">
+    <img src="undp.jpeg" alt="AfDB">
+  </div>
+</section>
+
+
+<!-- FAQ -->
+<section class="section faq" id="faq">
+  <div class="faq-inner">
+    <div class="faq-header reveal">
+      <div class="eyebrow" style="justify-content:center">Perguntas Frequentes</div>
+      <div class="h2">Temos as<br><em>respostas</em></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Quem pode beneficiar dos vossos serviços?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Os nossos serviços destinam-se a agricultores individuais, cooperativas agrícolas, comunidades rurais, ONGs, escolas, centros de saúde e empresas agro-industriais em todo o território moçambicano.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Quanto tempo demora a instalação de um sistema?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Um sistema solar doméstico simples pode ser instalado em 1 a 2 dias. Sistemas maiores para comunidades ou fazendas levam geralmente entre 1 a 4 semanas, dependendo da dimensão e da localização do projecto.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">E se o sistema tiver uma avaria? Têm suporte técnico?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Sim. Todos os sistemas têm garantia e acompanhamento técnico remoto via plataforma digital. Formamos técnicos locais em cada comunidade para pequenas intervenções. A nossa equipa desloca-se em 48 horas para avarias mais complexas.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Moçambique tem potencial solar suficiente para justificar o investimento?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Absolutamente. Moçambique está localizado numa das regiões com maior irradiação solar do mundo, com uma média de 5 a 6 kWh/m²/dia. Este potencial é um dos maiores recursos do país e o que nos permite oferecer energia a preços competitivos.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Como posso tornar-me parceiro ou investidor da Agro Energia?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Estamos abertos a parcerias com ONGs, governos, empresas privadas e investidores de impacto. Contacte-nos através do formulário ou envie email para parcerias@agroenergiamc.co.mz — a nossa equipa responde em 48 horas.</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<div class="cta-section" id="contacto">
+  <div class="cta-bg">
+    <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1600&q=85&auto=format&fit=crop" alt="Instalação solar em zona rural de África"/>
+  </div>
+  <div class="cta-inner">
+    <div class="cta-text reveal">
+      <div class="eyebrow">Comece Hoje</div>
+      <div class="h2">Pronto para ligar<br><em>a sua comunidade?</em></div>
+      <p class="lead">A avaliação inicial é gratuita e sem compromisso. Juntos encontramos a solução certa para si.</p>
+      <div class="cta-btns">
+        <a href="mailto:info@agroenergiamc.co.mz" class="btn-cta-lg">Solicitar Avaliação Gratuita</a>
+        <a href="tel:+258845258481" class="btn-ghost-lg">Ligar agora</a>
+      </div>
+      <div class="cta-contact">
+        <div class="cta-contact-label">Contactos directos</div>
+        <div class="cta-contact-items">
+          <div class="cta-contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Av. da Tanzania, Bairro da Malanga, nº 29, 2º andar, Cidade de Maputo, Moçambique
+          </div>
+          <div class="cta-contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 5.18a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.91 9.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            +258 84 525 8481 / 82 023 4292
+          </div>
+          <div class="cta-contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            info@agroenergia.co.mz
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal d2">
+      <ul class="cta-checklist">
+        <li>Avaliação técnica gratuita e sem compromisso no local da sua fazenda ou comunidade.</li>
+        <li>Proposta personalizada com opções de financiamento adaptadas ao seu orçamento.</li>
+        <li>Instalação realizada por técnicos certificados com participação de mão-de-obra local.</li>
+        <li>Garantia de 5 anos em todos os equipamentos e suporte técnico contínuo pós-instalação.</li>
+        <li>Formação para operadores locais incluída em todos os projectos comunitários.</li>
+        <li>Monitorização remota em tempo real da produção e consumo energético do sistema.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <span class="footer-brand-name">Agro Energia <span>Moçambique</span></span>
+      <p class="footer-tagline">Energia limpa para alimentar o campo e o futuro de Moçambique.</p>
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/company/agro-energia-mo%C3%A7ambique/about/?viewAsMember=true" target="_blank" rel="noopener" class="footer-social" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <div class="footer-social" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </div>
+        <div class="footer-social" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 1.96A29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.94 1.96C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" style="fill:var(--navy)"/></svg>
+        </div>
+        <div class="footer-social" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" style="fill:var(--navy)"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-head">Soluções</div>
+      <ul class="footer-links"><li><a href="#">Painéis e Sistemas Pico Solares</a></li><li><a href="#">Bombas Solares</a></li><li><a href="#">Secadores e Refrigeradores Solares</a></li><li><a href="#">Biogás</a></li><li><a href="#">Consultoria</a></li><li><a href="#">Softwares como Serviço</a></li></ul>
+    </div>
+    <div>
+      <div class="footer-col-head">Empresa</div>
+      <ul class="footer-links"><li><a href="#">Sobre Nós</a></li><li><a href="#">A Nossa Missão</a></li><li><a href="#">Projectos</a></li><li><a href="#">Impacto</a></li><li><a href="#">Parcerias</a></li><li><a href="#">Carreiras</a></li></ul>
+    </div>
+    <div>
+      <div class="footer-col-head">Recursos</div>
+      <ul class="footer-links"><li><a href="#">Blog e Notícias</a></li><li><a href="#">Perguntas Frequentes</a></li><li><a href="#">Guias Técnicos</a></li><li><a href="#">Relatório de Impacto</a></li><li><a href="#">Política de Privacidade</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Agro Energia Moçambique. Todos os direitos reservados.</span>
+    <div class="footer-bottom-links"><a href="#">Privacidade</a><a href="#">Termos</a><a href="#">Cookies</a></div>
+  </div>
+</footer>
+
+
+<script>
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('in'); }), { threshold: 0.08 });
+reveals.forEach(el => obs.observe(el));
+
+// Nav shadow
+window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', scrollY > 10); }, { passive: true });
+
+// FAQ
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const open = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!open) item.classList.add('open');
+}
+
+// Impact counter
+const nums = document.querySelectorAll('.impact-num');
+const cObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting || e.target.dataset.done) return;
+    e.target.dataset.done = 1;
+    const full = e.target.textContent;
+    const num = parseFloat(full.replace(/[^0-9.]/g,''));
+    const suffix = full.replace(/[0-9,.]/g,'').trim();
+    if (!num) return;
+    const dur = 1600, t0 = performance.now();
+    const tick = now => {
+      const p = Math.min((now - t0) / dur, 1);
+      const v = num * (1 - Math.pow(1 - p, 3));
+      const d = num >= 1000 ? Math.round(v).toLocaleString('pt-PT') : num < 10 ? v.toFixed(1) : Math.round(v);
+      e.target.textContent = d + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
+}, { threshold: 0.5 });
+nums.forEach(n => cObs.observe(n));
+
+// Hero entrance
+const hc = document.querySelector('.hero-content');
+hc.style.cssText = 'opacity:0;transform:translateY(20px)';
+setTimeout(() => { hc.style.transition = 'opacity 1s ease, transform 1s ease'; hc.style.opacity = 1; hc.style.transform = 'translateY(0)'; }, 120);
+
+// Mobile hamburger menu
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+hamburger.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('open', isOpen);
+  hamburger.setAttribute('aria-expanded', isOpen);
+  mobileMenu.setAttribute('aria-hidden', !isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+
+function closeMobileMenu() {
+  mobileMenu.classList.remove('open');
+  hamburger.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', false);
+  mobileMenu.setAttribute('aria-hidden', true);
+  document.body.style.overflow = '';
+}
+
+// Close mobile menu on outside click
+document.addEventListener('click', (e) => {
+  if (mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+    closeMobileMenu();
+  }
+});
+
+// Close mobile menu on resize to desktop
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 680) closeMobileMenu();
+}, { passive: true });
+</script>
+</body>
+</html>
